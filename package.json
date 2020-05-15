@@ -1,0 +1,19 @@
+{
+  "name": "CoverPage",
+  "version": "1.0.0",
+  "description": "Creates a cover page for your Figma file",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@figma/plugin-typings": "^1.15.0",
+    "feather-icons": "^4.28.0",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.11"
+  }
+}

@@ -1,0 +1,161 @@
+
+<div style="padding-left: 8px;padding-right: 8px;" id = "coverui" onload="myfnc()" >
+  <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: normal; padding-bottom: 8px;padding-top: 8px;">Preferences</h3>
+  
+  <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 14px; color:#727e96; padding-bottom: 8px;">
+    Cover page text: <br/><br/><input placeholder="Our Design System" id="message" type="text" style="width: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 14px; padding: 8px 16px 10px 16px; border-radius: 6px; background-color: #f5f5f5; color: #000000; border: 0px solid #FFFFFF;"></p>
+  
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 14px; color:#727e96">
+      Theme: <label id="selectedColorValue" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 14px; color:#000000"></label></p>
+    
+    <form id="colorSelectionForm" style="display:flex; align-items: center;justify-content: space-evenly;">
+      <input type="radio" id="Blue" name="color" value="Blue" hidden><label for="Blue"><div id="Blue1" style=" background-color: #89AEFF; width: 20px; height:20px; border-radius: 20px;"> </div></label>
+      <input type="radio" id="Green" name="color" value="Green" hidden><label for="Green"><div id="Green1" style=" background-color: #56FF67; width: 20px; height:20px; border-radius: 20px;"> </div></label>
+      <input type="radio" id="Yellow" name="color" value="Yellow" hidden><label for="Yellow"><div id="Yellow1" style=" background-color: #FCFE9E; width: 20px; height:20px; border-radius: 20px;"> </div></label>
+      <input type="radio" id="Pink" name="color" value="Pink" hidden><label for="Pink"><div id="Pink1" style=" background-color: #FE9ECC; width: 20px; height:20px; border-radius: 20px;"> </div></label>
+      <input type="radio" id="Orange" name="color" value="Orange" hidden><label for="Orange"><div id="Orange1" style=" background-color: #F9AFAB; width: 20px; height:20px; border-radius: 20px;"> </div></label>
+      <input type="radio" id="Teal" name="color" value="Teal" hidden><label for="Teal"><div id="Teal1" style=" background-color: #69A1AC; width: 20px; height:20px; border-radius: 20px;"> </div></label>
+      <input type="radio" id="Brown" name="color" value="Brown" hidden><label for="Brown"><div id="Brown1" style=" background-color: #B28B67; width: 20px; height:20px; border-radius: 20px;"> </div></label>
+      <input type="radio" id="Red" name="color" value="Red" hidden><label for="Red"><div id="Red1" style=" background-color: #FF5856; width: 20px; height:20px; border-radius: 20px;"> </div></label>
+      <input type="radio" id="Gray" name="color" value="Gray" hidden><label for="Gray"><div id="Gray1" style=" background-color: #D4D4D4; width: 20px; height:20px; border-radius: 20px;"> </div></label>
+      
+    </form>
+    
+    <div id="emojis" style="display:flex; align-items: center;justify-content: space-evenly;">
+      
+    </div>
+    
+
+  <br/>
+
+  <!-- <p>Count: <input id="message" type="text"></p> -->
+  <button id="create" style="font-size: 14px; padding: 8px 16px 10px 16px; border-radius: 6px; background-color: #e5eefd; color: #2567f6; border: 0px solid #FFFFFF;">Create</button>
+  <button id="cancel" style="font-size: 14px; padding: 8px 16px 10px 16px; border-radius: 6px;  color: #727e96; border: 0px solid #FFFFFF;">Close</button>
+
+  <br/><br/>
+
+</div>
+
+
+<script>
+
+
+
+
+
+
+
+  ///// Inititally setting the default color option selected
+  const colors = document.getElementsByName('color');
+  // highlight the selected color
+  document.getElementById(colors[0].id+'1').style.border = "4px solid #EEEEEE";
+  document.getElementById(colors[0].id).checked = true;
+  // show the selected color
+  document.getElementById('selectedColorValue').innerText = colors[0].value;
+
+
+// change of text
+document.getElementById('message').oninput = () => {
+  
+  // check if text is message is entered
+  if(document.getElementById('message').value.length > 0){
+
+    document.getElementById('message').style.backgroundColor = "#F5F5F5";
+    document.getElementById('message').style.border = "none";
+  }
+  else {
+    document.getElementById('message').style.backgroundColor = "#fdf1f1";
+    document.getElementById('message').style.border = "1px solid #ffd7cf";
+  }
+  
+}
+
+
+// change of color
+document.getElementById('colorSelectionForm').onchange = () => {
+  const colors = document.getElementsByName('color');
+  
+  for(i = 0; i < colors.length; i++) { 
+      if(colors[i].checked) {
+        // console.log(colors[i].value);
+        // console.log(colors[i].id);
+        // highlight the selected color
+        document.getElementById(colors[i].id+'1').style.border = "4px solid #EEEEEE"
+
+        // show the selected color
+        document.getElementById('selectedColorValue').innerText = colors[i].value;
+        
+      }
+      else {
+        // updat all colors to unselected state
+        colors[i].checked=false;
+        document.getElementById(colors[i].id+'1').style.border = "none"
+      }
+    }
+}
+
+document.getElementById('create').onclick = () => {
+
+  // check if user enter the message
+  if(document.getElementById('message').value.length > 0){
+
+    document.getElementById('message').style.backgroundColor = "#F5F5F5";
+    document.getElementById('message').style.border = "none";
+
+    // get the entered message
+    const textbox = document.getElementById('message');
+    const message = textbox.value;
+
+    // get selected color
+    const colors = document.getElementsByName('color');
+
+    // parse through colors and get the selected id
+    for(i = 0; i < colors.length; i++) { 
+        if(colors[i].checked) {
+          // console.log(colors[i].value);
+          break;
+        }
+      }
+
+      // get RGB value of selected color
+      var rgb = RGBToHSL(document.getElementById(colors[i].id+'1').style.backgroundColor);
+      
+    // pass the parameters
+    parent.postMessage({ pluginMessage: { type: 'create-cover', message: message, bgColor: rgb} }, '*')
+  }
+  else {
+    document.getElementById('message').style.backgroundColor = "#fdf1f1";
+    document.getElementById('message').style.border = "1px solid #EEEEEE";
+  }
+
+  
+}
+
+document.getElementById('cancel').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+}
+
+
+function RGBToHSL(rgb) {
+  let sep = rgb.indexOf(",") > -1 ? "," : " ";
+  rgb = rgb.substr(4).split(")")[0].split(sep);
+
+  for (let R in rgb) {
+    let r = rgb[R];
+    if (r.indexOf("%") > -1)
+      rgb[R] = Math.round(r.substr(0,r.length - 1) / 100 * 255);
+  }
+
+  // Make r, g, and b fractions of 1
+  let r = rgb[0] / 255,
+      g = rgb[1] / 255,
+      b = rgb[2] / 255;
+
+  return rgb;
+  
+}
+
+</script>
+
+
+  
